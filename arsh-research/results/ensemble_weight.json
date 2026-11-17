@@ -1,0 +1,305 @@
+{
+  "weight": 0.3,
+  "val_mean_spellF1": {
+    "0.0": 0.7689244994228832,
+    "0.1": 0.7783450460213851,
+    "0.2": 0.7789165172173235,
+    "0.3": 0.7863755975023232,
+    "0.4": 0.7773749317996851,
+    "0.5": 0.7802078847117628,
+    "0.6": 0.7839000197270335,
+    "0.7": 0.77820881840616,
+    "0.8": 0.7720235888798529,
+    "0.9": 0.7722228459070563,
+    "1.0": 0.7611685351409275
+  },
+  "val": {
+    "0.0": {
+      "idsse_J03WQQ": {
+        "spell_f1_mean": 0.7428571428571429,
+        "macro_f1": 0.9190138089790337,
+        "n_pred_spells": 283,
+        "n_gt_spells": 284
+      },
+      "skillcorner_1886347": {
+        "spell_f1_mean": 0.8285077951002228,
+        "macro_f1": 0.9429582428308145,
+        "n_pred_spells": 226,
+        "n_gt_spells": 223
+      },
+      "skillcorner_1899585": {
+        "spell_f1_mean": 0.735408560311284,
+        "macro_f1": 0.9166172133025604,
+        "n_pred_spells": 270,
+        "n_gt_spells": 244
+      }
+    },
+    "0.1": {
+      "idsse_J03WQQ": {
+        "spell_f1_mean": 0.7497345132743364,
+        "macro_f1": 0.9214507331314014,
+        "n_pred_spells": 281,
+        "n_gt_spells": 284
+      },
+      "skillcorner_1886347": {
+        "spell_f1_mean": 0.8387387387387386,
+        "macro_f1": 0.9440773742658971,
+        "n_pred_spells": 221,
+        "n_gt_spells": 223
+      },
+      "skillcorner_1899585": {
+        "spell_f1_mean": 0.7465618860510805,
+        "macro_f1": 0.9194531829221084,
+        "n_pred_spells": 265,
+        "n_gt_spells": 244
+      }
+    },
+    "0.2": {
+      "idsse_J03WQQ": {
+        "spell_f1_mean": 0.7531083481349911,
+        "macro_f1": 0.927535827251959,
+        "n_pred_spells": 279,
+        "n_gt_spells": 284
+      },
+      "skillcorner_1886347": {
+        "spell_f1_mean": 0.8326530612244898,
+        "macro_f1": 0.9435635410692726,
+        "n_pred_spells": 218,
+        "n_gt_spells": 223
+      },
+      "skillcorner_1899585": {
+        "spell_f1_mean": 0.75098814229249,
+        "macro_f1": 0.9192754110955467,
+        "n_pred_spells": 262,
+        "n_gt_spells": 244
+      }
+    },
+    "0.3": {
+      "idsse_J03WQQ": {
+        "spell_f1_mean": 0.7662477558348295,
+        "macro_f1": 0.9322923544679824,
+        "n_pred_spells": 273,
+        "n_gt_spells": 284
+      },
+      "skillcorner_1886347": {
+        "spell_f1_mean": 0.8349425287356322,
+        "macro_f1": 0.9453256126149127,
+        "n_pred_spells": 212,
+        "n_gt_spells": 223
+      },
+      "skillcorner_1899585": {
+        "spell_f1_mean": 0.757936507936508,
+        "macro_f1": 0.9213753938113055,
+        "n_pred_spells": 260,
+        "n_gt_spells": 244
+      }
+    },
+    "0.4": {
+      "idsse_J03WQQ": {
+        "spell_f1_mean": 0.7412844036697248,
+        "macro_f1": 0.9314807678668501,
+        "n_pred_spells": 261,
+        "n_gt_spells": 284
+      },
+      "skillcorner_1886347": {
+        "spell_f1_mean": 0.8334106728538282,
+        "macro_f1": 0.9445083071072498,
+        "n_pred_spells": 208,
+        "n_gt_spells": 223
+      },
+      "skillcorner_1899585": {
+        "spell_f1_mean": 0.7574297188755021,
+        "macro_f1": 0.9216213546388854,
+        "n_pred_spells": 254,
+        "n_gt_spells": 244
+      }
+    },
+    "0.5": {
+      "idsse_J03WQQ": {
+        "spell_f1_mean": 0.7521178637200736,
+        "macro_f1": 0.9349211490479595,
+        "n_pred_spells": 259,
+        "n_gt_spells": 284
+      },
+      "skillcorner_1886347": {
+        "spell_f1_mean": 0.8362790697674418,
+        "macro_f1": 0.9439760040945607,
+        "n_pred_spells": 207,
+        "n_gt_spells": 223
+      },
+      "skillcorner_1899585": {
+        "spell_f1_mean": 0.7522267206477732,
+        "macro_f1": 0.9208519824797197,
+        "n_pred_spells": 250,
+        "n_gt_spells": 244
+      }
+    },
+    "0.6": {
+      "idsse_J03WQQ": {
+        "spell_f1_mean": 0.759925788497217,
+        "macro_f1": 0.9353044711453312,
+        "n_pred_spells": 255,
+        "n_gt_spells": 284
+      },
+      "skillcorner_1886347": {
+        "spell_f1_mean": 0.847058823529412,
+        "macro_f1": 0.9438635044583346,
+        "n_pred_spells": 202,
+        "n_gt_spells": 223
+      },
+      "skillcorner_1899585": {
+        "spell_f1_mean": 0.7447154471544716,
+        "macro_f1": 0.9187106637111203,
+        "n_pred_spells": 248,
+        "n_gt_spells": 244
+      }
+    },
+    "0.7": {
+      "idsse_J03WQQ": {
+        "spell_f1_mean": 0.7455223880597014,
+        "macro_f1": 0.9334776946290497,
+        "n_pred_spells": 252,
+        "n_gt_spells": 284
+      },
+      "skillcorner_1886347": {
+        "spell_f1_mean": 0.8397163120567376,
+        "macro_f1": 0.942552624820319,
+        "n_pred_spells": 200,
+        "n_gt_spells": 223
+      },
+      "skillcorner_1899585": {
+        "spell_f1_mean": 0.7493877551020407,
+        "macro_f1": 0.9181506915967582,
+        "n_pred_spells": 246,
+        "n_gt_spells": 244
+      }
+    },
+    "0.8": {
+      "idsse_J03WQQ": {
+        "spell_f1_mean": 0.7517625231910946,
+        "macro_f1": 0.9344794798248216,
+        "n_pred_spells": 255,
+        "n_gt_spells": 284
+      },
+      "skillcorner_1886347": {
+        "spell_f1_mean": 0.826603325415677,
+        "macro_f1": 0.9399279116569833,
+        "n_pred_spells": 198,
+        "n_gt_spells": 223
+      },
+      "skillcorner_1899585": {
+        "spell_f1_mean": 0.7377049180327869,
+        "macro_f1": 0.9153623235796394,
+        "n_pred_spells": 244,
+        "n_gt_spells": 244
+      }
+    },
+    "0.9": {
+      "idsse_J03WQQ": {
+        "spell_f1_mean": 0.7584415584415585,
+        "macro_f1": 0.933988072886033,
+        "n_pred_spells": 255,
+        "n_gt_spells": 284
+      },
+      "skillcorner_1886347": {
+        "spell_f1_mean": 0.8239234449760765,
+        "macro_f1": 0.9370551518615914,
+        "n_pred_spells": 195,
+        "n_gt_spells": 223
+      },
+      "skillcorner_1899585": {
+        "spell_f1_mean": 0.7343035343035342,
+        "macro_f1": 0.9124933662523457,
+        "n_pred_spells": 237,
+        "n_gt_spells": 244
+      }
+    },
+    "1.0": {
+      "idsse_J03WQQ": {
+        "spell_f1_mean": 0.7419117647058824,
+        "macro_f1": 0.9308167066329291,
+        "n_pred_spells": 260,
+        "n_gt_spells": 284
+      },
+      "skillcorner_1886347": {
+        "spell_f1_mean": 0.8182254196642684,
+        "macro_f1": 0.933345161472466,
+        "n_pred_spells": 194,
+        "n_gt_spells": 223
+      },
+      "skillcorner_1899585": {
+        "spell_f1_mean": 0.7233684210526315,
+        "macro_f1": 0.9078157797975144,
+        "n_pred_spells": 231,
+        "n_gt_spells": 244
+      }
+    }
+  },
+  "test": {
+    "0.3": {
+      "idsse_J03WR9": {
+        "spell_f1_mean": 0.8030828516377649,
+        "macro_f1": 0.9460039197421698,
+        "n_pred_spells": 252,
+        "n_gt_spells": 267
+      },
+      "skillcorner_1874553": {
+        "spell_f1_mean": 0.8162046908315566,
+        "macro_f1": 0.9342981932966556,
+        "n_pred_spells": 241,
+        "n_gt_spells": 228
+      }
+    },
+    "1.0": {
+      "idsse_J03WR9": {
+        "spell_f1_mean": 0.788118811881188,
+        "macro_f1": 0.9398130641103245,
+        "n_pred_spells": 238,
+        "n_gt_spells": 267
+      },
+      "skillcorner_1874553": {
+        "spell_f1_mean": 0.7907192575406032,
+        "macro_f1": 0.9243886653163721,
+        "n_pred_spells": 203,
+        "n_gt_spells": 228
+      }
+    },
+    "0.0": {
+      "idsse_J03WR9": {
+        "spell_f1_mean": 0.7908918406072106,
+        "macro_f1": 0.9387632785340833,
+        "n_pred_spells": 260,
+        "n_gt_spells": 267
+      },
+      "skillcorner_1874553": {
+        "spell_f1_mean": 0.8016806722689076,
+        "macro_f1": 0.9323755548775489,
+        "n_pred_spells": 248,
+        "n_gt_spells": 228
+      }
+    }
+  },
+  "test_mean_spellF1": {
+    "0.3": 0.8096437712346607,
+    "1.0": 0.7894190347108956,
+    "0.0": 0.7962862564380591
+  },
+  "m1_model": "runs/final_eval/M1_transformer.pt",
+  "tcn_tags": [
+    "cs0",
+    "cs1",
+    "cs2",
+    "cs3",
+    "cs4"
+  ],
+  "val_matches": [
+    "idsse_J03WQQ",
+    "skillcorner_1886347",
+    "skillcorner_1899585"
+  ],
+  "test_matches": [
+    "idsse_J03WR9",
+    "skillcorner_1874553"
+  ],
+  "minutes": 8.531190566221873
+}
