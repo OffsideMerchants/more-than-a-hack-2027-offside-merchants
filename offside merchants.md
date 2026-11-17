@@ -102,8 +102,13 @@ At prediction time the same choices are enforced by the decoder: the HMM's trans
 flicker, and boundaries snap to the rule-based baseline, which switches team only after sustained control and keeps
 the last team while the ball is in flight or briefly missing (`m1/footy/rules.py`). An alternative relabelling that
 looks for evidence of control (completed pass, won tackle, a player within 1.5 m for 1 s; `src/possession/labels.py`)
-was built and not used in the final pipeline. <!-- TODO team: if you have the held-out comparison of the 2 s rule
-against the evidence labels, add the two numbers here; argue only from held-out open matches, not the public window. -->
+was built and not used in the final pipeline.
+
+Why a conversion at all: the challenge counts *controlled* possession, while provider flags switch on every touch,
+and the difference is large (raw DFL flags score only 0.742 spellF1 against the converted labels of the same
+matches). The 2 s threshold follows the challenge text ("a player keeps the ball for a few seconds") and was not
+varied. Our held-out matches cannot settle it either, because they are scored against labels made with the same rule;
+how sensitive the results are to it is an open question (section 8).
 
 ## 6. Results on open data
 
@@ -138,7 +143,21 @@ and the SkillCorner tracking, so we expect a lower score on the full match.
 | per-frame possessor identity as an auxiliary target | available on too few frames, dropped |
 | evidence-based control labels instead of the 2 s rule | built, not used (section 5) |
 | SoccerNet-GAR, PFF World Cup 2022 | not accessible in time (NDA / request pending); SoccerNet labels events, not possession |
-<!-- TODO team: add M1 variants that were tried and dropped, if any. -->
+
+For M1, on the same validation and test matches as the submission (choices made on validation, test only reported):
+
+| idea | outcome |
+|---|---|
+| M2: an encoder with the pitch symmetries built in (exactly equivariant to swapping the teams, mirror-averaged) | no gain: test spellF1 0.790 against 0.788 for M1, and the same reconstruction error. M1 with the 180° rotation at test time gets the same effect, so M1 was kept |
+| M3: a spatio-temporal graph attention encoder | implemented, never trained |
+| gradient boosting on engineered team features, observation streams and 20 s context, decoded by the same HMM | clearly worse: 0.705 against 0.788 on the same split, 0.693 against 0.738 in a 3-fold comparison over 30 matches |
+| learned forecast features (Timestral) for the boosting model | the gain was explained by plain 20 s context features; dropped |
+| earlier stages: rule teacher with pseudo-labels, naive-Bayes evidence streams + HMM, unsupervised feature HSMM, HSMM instead of HMM | superseded by the pretrained model; HSMM and HMM scored the same, so the simpler HMM was kept |
+| filling ball gaps (interpolation, backward rules), set pieces as restart anchors | no gain |
+| re-tuning the decoder (126 settings of boost, emission scale and snap radius) | the surface is flat; it cannot recover the missing short possessions, which are not in the model's probabilities |
+| combining overlapping windows: denser windows, centre weighting, log averaging | no gain; only the 180° rotation at test time helped (+0.011 on validation) and is part of the submission |
+| rules on top of the transformer: boundary bonus, rule evidence in the HMM, stacking | no gain: the transformer has already absorbed what the rules know |
+| Smart Tagging transition tags as evidence | helped with simulated tags, but made the system depend on tag quality (worse tags cost about 0.07); the submission uses the tracking only |
 
 ## 8. Limitations, and what we would do with more time
 
@@ -148,9 +167,13 @@ and the SkillCorner tracking, so we expect a lower score on the full match.
 - **Labels do not match the competition's definition exactly.** DFL flags, SkillCorner phases and Metrica events
   each draw spell boundaries differently; the 2 s rule harmonises only the change-of-possession part. Relabelling the
   training data to the competition's definition is probably where most of the remaining gap is.
-- **Short possessions get merged.** Both models predict too few spells (about 10-30% fewer than true); the unmatched
-  true spells are short (median under 2 s). A dedicated boundary head or a segment-level decoder trained on the metric
-  would target this.
+- **Short possessions get merged.** Both models predict too few spells (about 10-30% fewer than true). For M1 the
+  missed possessions are short (median 3.7 s), yet the ball is visible in 81% of them and the team touches it in 73%:
+  the hard part is deciding whether a short possession was *controlled* or only a touch, deflection or duel, where
+  rule-based control detection is only 69% precise too. Training that focuses on possession changes (a higher loss
+  weight near transitions, a change-point head) or a half-level sequence model would target this.
+- **The 2 s threshold** of the possession rule was fixed from the challenge text and never varied. If the official
+  ground truth switches sooner, our models merge real short possessions, which would add to the problem above.
 - **Dead ball while the ball is missing** is the hardest call: with no ball, a stoppage has to be read from player
   speeds and positions alone.
 - **Small validation set.** The ensemble weight and HMM scale are chosen on three matches; the curve over weights is
