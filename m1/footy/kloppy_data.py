@@ -4,8 +4,9 @@ Sources:
   sportec / IDSSE  7 Bundesliga matches (DFL, 25 Hz), via kloppy.sportec.load_open_*. Every frame
                    carries ball_state (alive/dead) and ball_owning_team, giving per-frame
                    reference labels: Home / Away / DeadBall.
-  metrica          via kloppy.metrica.load_open_data (games 1-3). Game 1 and 2 labels still come
-                   from footy.labels (derived from events).
+  metrica          not loaded here: games 1-2 are read from local CSV files (footy.data, labels from
+                   footy.labels), game 3 from local EPTS files with kloppy (footy.metrica3); the files
+                   come from scripts/get_open_data.py.
 
 Slots: each team has MAX_PER_TEAM slots. A substitute takes over the slot of a player who has
 left the pitch (interval scheduling on first and last appearance), so 14 slots are enough even

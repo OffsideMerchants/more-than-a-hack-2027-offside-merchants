@@ -172,6 +172,7 @@ This uses the committed weights and validates the file. The submitted file was p
 on that GPU) and choose the ensemble weight again:
 
 ```bash
+python scripts/get_open_data.py      # IDSSE, SkillCorner and Metrica from their public sources
 bash scripts/train_all.sh --fresh
 python scripts/ensemble_weight.py
 ```

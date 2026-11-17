@@ -57,12 +57,16 @@ test match of the cross-validation fold on which the TCN recipe was developed
 ## Retrain
 
 ```bash
-bash scripts/train_all.sh --fresh       # both models from scratch on splits.json, about 5 h on an RTX 2060 SUPER
-python scripts/ensemble_weight.py       # M1 weight of the ensemble, chosen on the validation matches
+.venv/bin/python scripts/get_open_data.py   # open training data (IDSSE, SkillCorner, Metrica), several GB, no git-lfs needed
+bash scripts/train_all.sh --fresh           # both models from scratch on splits.json, about 5 h on an RTX 2060 SUPER
+.venv/bin/python scripts/ensemble_weight.py # M1 weight of the ensemble, chosen on the validation matches
 ```
 
-The open training data is not in this repository; download instructions are in [m1/README.md](m1/README.md) and
-[arsh-research/06_reproduce.md](arsh-research/06_reproduce.md). Seeds are fixed, but GPU kernels are not forced to be
+The open training data is not in this repository. `scripts/get_open_data.py` downloads it from the public sources
+(huggingface.co/datasets/pysport/idsse-data, github.com/SkillCorner/opendata, github.com/metrica-sports/sample-data)
+into the folders the code reads (`idsse-data/`, `artifacts/external/skillcorner/`, `m1/data/`); `--dry-run` only
+checks that every source answers. During training, M1 also downloads IDSSE once more through kloppy into its own
+cache. Seeds are fixed, but GPU kernels are not forced to be
 deterministic, so a retrain gives close, not identical, weights. The committed weights reproduce the submission file.
 
 ## Licence and attribution (our code)

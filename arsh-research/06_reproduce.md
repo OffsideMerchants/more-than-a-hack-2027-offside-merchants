@@ -4,8 +4,10 @@ Environment: Python 3.12, `.venv`, dependencies in `requirements.txt` / `uv.lock
 Run from the repository root with `PYTHONPATH=src`.
 
 ## 0. Data
-- IDSSE: download pysport/idsse-data into `idsse-data/` (gitignored, not in the repo).
-- SkillCorner: `git clone https://github.com/SkillCorner/opendata artifacts/external/skillcorner` (MIT). Any Python that reads downloaded data should be run with `-I`.
+`python scripts/get_open_data.py` downloads everything below (several GB; files already present are skipped; `--dry-run` only checks the sources):
+- IDSSE: the 7 matches of huggingface.co/datasets/pysport/idsse-data into `idsse-data/` (gitignored, not in the repo).
+- SkillCorner: github.com/SkillCorner/opendata (MIT) into `artifacts/external/skillcorner/data/`, linked into `m1/data/skillcorner/` for M1.
+- Metrica sample games 1-3 into `m1/data/metrica/` (M1 only).
 - BAR-ATH: the organisers' bundle in `data/` or `More Than A Hack 2027 - Initial Challenge - Dataset/`.
 
 ## 1. Build caches (5 Hz arrays)

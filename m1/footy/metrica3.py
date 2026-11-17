@@ -64,6 +64,7 @@ def load_metrica_game3(use_cache=True):
         frames = df["frame_id"].to_numpy()[sel]
         lab = period_labels(events[events.Period == period], int(frames[0]), len(frames))
         out.append((pos, lab))
+    CACHE.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(cache, n=len(out), **{f"pos{i}": p for i, (p, _) in enumerate(out)},
                         **{f"lab{i}": l for i, (_, l) in enumerate(out)})
     return out

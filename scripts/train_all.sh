@@ -4,6 +4,7 @@
 # weights. The TCN chain runs first, then the M1 chain (about 1.5 h + 3.5 h on an RTX 2060 SUPER). PARALLEL=1 runs
 # them side by side, which needs more than 8 GB of GPU memory. Logs in artifacts/train_logs/.
 #
+#   python scripts/get_open_data.py     # first: the open training data (IDSSE, SkillCorner, Metrica)
 #   bash scripts/train_all.sh           # continues where it stopped (M1 at epoch boundaries, TCN per seed)
 #   bash scripts/train_all.sh --fresh   # deletes the outputs of an earlier run first
 #   python scripts/ensemble_weight.py   # afterwards: M1 weight of the ensemble, chosen on the validation matches

@@ -33,14 +33,15 @@ python evaluation/run_evaluation.py --bootstrap 1000       # public 5 minutes: p
 
 ## Reproduce training
 
-Open data, not in this repository; put it under `m1/data/` (git-ignored). The training scripts run
-from `m1/` wherever they are started, so paths below are relative to `m1/`:
+Open data, not in this repository, under `m1/data/` (git-ignored). `python scripts/get_open_data.py` (repository
+root) downloads SkillCorner and Metrica into these folders; IDSSE is downloaded by kloppy itself on first use. The
+training scripts run from `m1/` wherever they are started, so paths below are relative to `m1/`:
 
 | source | where | path |
 |---|---|---|
-| IDSSE / DFL (7 matches) | downloaded by kloppy (`kloppy.sportec.load_open_tracking_data`) | `data/kloppy_cache/` |
-| SkillCorner (20 matches) | github.com/SkillCorner/opendata (git-lfs) | `data/skillcorner/<id>/<id>_{match.json,tracking_extrapolated.jsonl,phases_of_play.csv}`, `data/skillcorner/matches.json` |
-| Metrica sample games 1–3 | github.com/metrica-sports/sample-data | `data/metrica/Sample_Game_*` (flat) |
+| IDSSE / DFL (7 matches) | downloaded by kloppy on first use (`kloppy.sportec.load_open_tracking_data`, from huggingface.co/datasets/pysport/idsse-data) | `data/kloppy_cache/` |
+| SkillCorner (20 matches) | github.com/SkillCorner/opendata, via `scripts/get_open_data.py` (links to the TCN's copy in `artifacts/external/skillcorner/`) | `data/skillcorner/<id>/<id>_{match.json,tracking_extrapolated.jsonl,phases_of_play.csv}`, `data/skillcorner/matches.json` |
+| Metrica sample games 1–3 | github.com/metrica-sports/sample-data, via `scripts/get_open_data.py` | `data/metrica/Sample_Game_*` (flat) |
 
 `bash scripts/train_all.sh` (repository root) runs the commands below together with the TCN training. By hand:
 
