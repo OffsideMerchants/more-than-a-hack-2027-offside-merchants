@@ -1,7 +1,22 @@
-# Our submission: BAR-ATH ball possession
+# offside merchants: BAR-ATH ball possession
 
-This repository is our team's entry to More than a Hack 2027. It is the organisers' starter repository plus our
-code; their challenge description starts at [More than a Hack 2027 — Phase 1](#more-than-a-hack-2027--phase-1-ball-possession).
+This repository is the entry of team **offside merchants** to More than a Hack 2027, Phase 1. It is the organisers'
+starter repository plus our code. Every frame of BAR-ATH is labelled H, A or D from the automatic tracking alone, by
+an ensemble of two models trained only on open data from other matches.
+
+## Start here
+
+| you want to | go to |
+|---|---|
+| read the technical document (approach, assets, training data, possession rules, limitations) | [offside merchants.md](offside%20merchants.md) |
+| regenerate the submission file `offside merchants.csv` | [Reproduce the submission file](#reproduce-the-submission-file) |
+| see what runs and where the weights are | [What it runs](#what-it-runs) |
+| see the held-out results on open matches | [Held-out results](#held-out-results) |
+| download the open training data and retrain both models | [Retrain](#retrain) |
+| read the details of the transformer (M1) | [m1/README.md](m1/README.md) |
+| read the full write-up of the TCN (data, labels, model, training, results) | [arsh-research/README.md](arsh-research/README.md) |
+| check licences and data attribution | [Licence and attribution](#licence-and-attribution-our-code) |
+| read the organisers' challenge description | [More than a Hack 2027 — Phase 1](#more-than-a-hack-2027--phase-1-ball-possession) |
 
 ## Reproduce the submission file
 
@@ -11,7 +26,7 @@ without one it falls back to the CPU, about 15 minutes).
 ```bash
 uv sync --frozen                         # pinned environment from uv.lock
 # without uv: python3.12 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
-.venv/bin/python scripts/predict_ensemble.py --data-dir "/path/to/dataset" --out <team_name>.csv
+.venv/bin/python scripts/predict_ensemble.py --data-dir "/path/to/dataset" --out "offside merchants.csv"
 ```
 
 `--data-dir` is the folder holding `tactical/`; only the tracking (`tactical/BAR-ATH_tactical_atd.{xml,txt}`) is read.
@@ -76,7 +91,7 @@ organisers' files ([LICENSE](LICENSE)). The models are trained only on open data
 
 - **IDSSE** (DFL Bundesliga tracking and event data): Bassek, Rein, Weber and Memmert, *An integrated dataset of
   spatiotemporal and event data in elite soccer*, Scientific Data (2025); CC BY 4.0;
-  [pysport/idsse-data](https://github.com/pysport/idsse-data).
+  [huggingface.co/datasets/pysport/idsse-data](https://huggingface.co/datasets/pysport/idsse-data).
 - **SkillCorner open data**: [SkillCorner/opendata](https://github.com/SkillCorner/opendata), MIT.
 - **Metrica Sports sample data** (games 1–3, M1 only): [metrica-sports/sample-data](https://github.com/metrica-sports/sample-data);
   see that repository for its terms.
