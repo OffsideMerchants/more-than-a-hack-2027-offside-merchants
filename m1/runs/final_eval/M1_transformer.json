@@ -1,0 +1,26 @@
+{
+  "name": "M1_transformer",
+  "ckpt": "runs/ssl_full_mae/best.pt",
+  "hmm_scale": 0.8,
+  "per_match": {
+    "idsse_J03WR9": {
+      "spell_f1_mean": 0.7858546168958742,
+      "macro_f1": 0.9400427093806735,
+      "alive_dead_f1": 0.9883756285814524,
+      "team_acc_both_alive": 0.9331605849779924,
+      "n_pred_spells": 242,
+      "n_gt_spells": 267
+    },
+    "skillcorner_1874553": {
+      "spell_f1_mean": 0.7823665893271461,
+      "macro_f1": 0.9230876289240985,
+      "alive_dead_f1": 0.9602082376358904,
+      "team_acc_both_alive": 0.9514727831711082,
+      "n_pred_spells": 203,
+      "n_gt_spells": 228
+    }
+  },
+  "mean_spellF1": 0.7841106031115102,
+  "mean_macroF1": 0.931565169152386,
+  "minutes": 75.22835599978765
+}

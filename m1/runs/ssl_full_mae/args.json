@@ -1,0 +1,17 @@
+{
+  "name": "ssl_full_mae",
+  "window": 80,
+  "stride": 5,
+  "epochs": 10,
+  "bs": 64,
+  "lr": 0.0005,
+  "dim": 128,
+  "depth": 6,
+  "heads": 4,
+  "dropout": 0.1,
+  "warmup": 1000,
+  "max_steps": 0,
+  "resume": true,
+  "workers": 4,
+  "ckpt_every": 0
+}
