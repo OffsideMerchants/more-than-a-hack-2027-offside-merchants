@@ -1,0 +1,5 @@
+{
+  "_doc": "One split for both models. test: never used for training, model selection or tuning. val: model selection (M1 HMM scale, TCN best checkpoint) and ensemble weight. Every other IDSSE, SkillCorner and Metrica (M1 only) match is training data; M1 pretraining also excludes test and val.",
+  "test": {"idsse": ["J03WR9"], "skillcorner": [1874553]},
+  "val": {"idsse": ["J03WQQ"], "skillcorner": [1886347, 1899585]}
+}

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(artifacts/**)",
+      "Read(data/**)",
+      "Read(More Than A Hack 2027 - Initial Challenge - Dataset/**)"
+    ]
+  }
+}

@@ -1,3 +1,84 @@
+# Our submission: BAR-ATH ball possession
+
+This repository is our team's entry to More than a Hack 2027. It is the organisers' starter repository plus our
+code; their challenge description starts at [More than a Hack 2027 — Phase 1](#more-than-a-hack-2027--phase-1-ball-possession).
+
+## Reproduce the submission file
+
+Needs Python 3.12, the organisers' data bundle (not in this repository) and preferably an NVIDIA GPU (a few minutes;
+without one it falls back to the CPU, about 15 minutes).
+
+```bash
+uv sync --frozen                         # pinned environment from uv.lock
+# without uv: python3.12 -m venv .venv && .venv/bin/pip install -r requirements-lock.txt
+.venv/bin/python scripts/predict_ensemble.py --data-dir "/path/to/dataset" --out <team_name>.csv
+```
+
+`--data-dir` is the folder holding `tactical/`; only the tracking (`tactical/BAR-ATH_tactical_atd.{xml,txt}`) is read.
+The script checks the file with `evaluation/validate_submission.py` and prints only counts and PASS/FAIL.
+Both models run with fixed weights and PyTorch's deterministic settings, so repeated runs give the same file.
+
+**Hardware.** The submitted file was produced on an NVIDIA GeForce RTX 2060 SUPER (8 GB), driver 617.14, CUDA 13.2,
+PyTorch 2.15.0, Python 3.12.3 (WSL2). On the same GPU, driver and library versions the file is identical; on other
+hardware, floating-point differences can flip a few labels. Without a GPU the script runs on the CPU (`--device cpu`).
+
+## What it runs
+
+| part | code | weights | details |
+|---|---|---|---|
+| M1: transformer pretrained on open tracking (masked trajectories), fine-tuned on 25 labelled open matches (5 more held out), test-time augmentation | `m1/` | `m1/runs/` | [m1/README.md](m1/README.md) |
+| TCN: five seeds of one temporal convolutional network, trained on SkillCorner + degraded IDSSE | `src/possession/`, `src/possession_gnn/` | `models/possession_ensemble.pt` | [arsh-research/](arsh-research/README.md) |
+| ensemble: per-frame H/A/D probabilities pooled log-linearly (M1 weight 0.3), decoded with M1's HMM and boundary snapping | `scripts/predict_ensemble.py` | `m1/runs/bar_ath/decoder.npz` | docstring of the script |
+
+Each model can also be run alone: `python m1/scripts/predict.py --data-dir ...` and
+`python scripts/predict_barath.py --data-dir ... --out ...`.
+No BAR-ATH data, labels or hand annotation is used for training or tuning; training data and commands are in the
+two linked write-ups.
+
+## Held-out results
+
+Both models use one split of the open matches ([splits.json](splits.json)). Validation (IDSSE J03WQQ, SkillCorner
+1886347 and 1899585) is used for model selection and the ensemble weight; test (IDSSE J03WR9, SkillCorner 1874553) is
+never trained on. Scored with the official scorer against controlled-possession labels (2 s rule), with both models
+on the same degraded input (`scripts/ensemble_weight.py`, results in
+[arsh-research/results/ensemble_weight.json](arsh-research/results/ensemble_weight.json)):
+
+| | validation spellF1 (3 matches) | test spellF1 (2 matches) |
+|---|---:|---:|
+| M1 alone | 0.761 | 0.789 |
+| TCN alone (5 seeds) | 0.769 | 0.796 |
+| **ensemble, M1 weight 0.3** (best on validation) | **0.786** | **0.810** |
+
+The test matches were scored once, after the weight was fixed. They are not fully independent of the TCN's design,
+though: J03WR9 was among the IDSSE matches on which earlier TCN variants were compared, and SkillCorner 1874553 was a
+test match of the cross-validation fold on which the TCN recipe was developed
+([arsh-research/05_results.md](arsh-research/05_results.md)). Read the test column as optimistic.
+
+## Retrain
+
+```bash
+bash scripts/train_all.sh --fresh       # both models from scratch on splits.json, about 5 h on an RTX 2060 SUPER
+python scripts/ensemble_weight.py       # M1 weight of the ensemble, chosen on the validation matches
+```
+
+The open training data is not in this repository; download instructions are in [m1/README.md](m1/README.md) and
+[arsh-research/06_reproduce.md](arsh-research/06_reproduce.md). Seeds are fixed, but GPU kernels are not forced to be
+deterministic, so a retrain gives close, not identical, weights. The committed weights reproduce the submission file.
+
+## Licence and attribution (our code)
+
+Our code (`m1/`, `src/`, `scripts/`, `tests/`, `arsh-research/`) is released under the MIT Licence, like the
+organisers' files ([LICENSE](LICENSE)). The models are trained only on open data:
+
+- **IDSSE** (DFL Bundesliga tracking and event data): Bassek, Rein, Weber and Memmert, *An integrated dataset of
+  spatiotemporal and event data in elite soccer*, Scientific Data (2025); CC BY 4.0;
+  [pysport/idsse-data](https://github.com/pysport/idsse-data).
+- **SkillCorner open data**: [SkillCorner/opendata](https://github.com/SkillCorner/opendata), MIT.
+- **Metrica Sports sample data** (games 1–3, M1 only): [metrica-sports/sample-data](https://github.com/metrica-sports/sample-data);
+  see that repository for its terms.
+
+---
+
 # More than a Hack 2027 — Phase 1: Ball Possession
 
 **Organised by [Metrica Sports](https://metrica-sports.com), [FC Barcelona](https://www.fcbarcelona.com)

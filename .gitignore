@@ -22,7 +22,6 @@ evaluation/results/*.csv
 # ...with one deliberate exception. The baselines are computed from the ATD alone -- the same ATD
 # every enrolled participant has -- and never read a ground truth of any kind, so they carry no
 # information about the answer. They ship so that a fresh clone has something real to score.
-!evaluation/results/baseline_*.csv
 evaluation/reports/
 evaluation/scoreboard.csv
 
@@ -31,6 +30,18 @@ evaluation/scoreboard.csv
 # into actually exists in a fresh clone. Everything they put in it stays out of git.
 data/*
 !data/README.md
+
+# The provided BAR-ATH dataset (ATD, homography, Smart Tagging) and anything derived from it. Never commit.
+More Than A Hack 2027 - Initial Challenge - Dataset/
+BAR-ATH_*
+evaluation/gt/
+idsse-data/
+barath/
+*.npz
+*.npy
+*.pkl
+*.parquet
+*.h5
 
 *.mp4
 *.gzip
@@ -59,6 +70,19 @@ organizers/
 __pycache__/
 *.py[cod]
 .venv/
+artifacts/
 venv/
 env/
 .DS_Store
+.venv/
+__pycache__/
+
+# -- M1 possession model (m1/) ------------------------------------------------------------------
+# open training data and caches stay local; the HMM decoder parameters (tiny .npz) are part of the model
+m1/data/
+m1/runs/**/*.ckpt.pt
+!m1/runs/bar_ath/*.npz
+m1/runs/*/last*.pt
+m1/runs/*/smoke.pt
+m1/runs/*/done
+m1/runs/smoke/
